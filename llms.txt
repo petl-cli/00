@@ -1,0 +1,505 @@
+# asana
+
+This is the interface for interacting with the [Asana Platform](https://developers.asana.com). Our API reference is generated from our [OpenAPI spec](https://raw.githubusercontent.com/Asana/openapi/master/defs/asana_oas.yaml).
+
+This file is the agent-facing overview of the `asana` CLI. It explains what the tool does and how to use it well — *not* every flag of every command. For per-command details run `asana <command> --help` or `asana <command> --schema` (returns JSON).
+
+## Install
+
+The binary is `asana`. Build from source or download a release.
+
+## Authentication
+
+-  — set `ASANA_BEARER_TOKEN`
+
+Run `asana configure` to set credentials interactively.
+
+## Commands
+
+asana groups operations by resource. One or two examples per group below — for the full set of commands and flags use `asana <group> --help`.
+
+### `allocations`
+
+```bash
+asana allocations create-record --body '{...}'    # Create an allocation
+```
+
+```bash
+asana allocations delete-allocation-by-id --allocation-gid <string>    # Delete an allocation
+```
+
+List all commands in this group: `asana allocations --help`
+
+### `attachments`
+
+```bash
+asana attachments delete-specific --attachment-gid <string>    # Delete an attachment
+```
+
+```bash
+asana attachments get-all-for-object --parent <string>    # Get attachments from an object
+```
+
+List all commands in this group: `asana attachments --help`
+
+### `audit-log-api`
+
+```bash
+asana audit-log-api get-audit-log-events --workspace-gid <string>    # Get audit log events
+```
+
+List all commands in this group: `asana audit-log-api --help`
+
+### `batch-api`
+
+```bash
+asana batch-api submit-parallel-requests --body '{...}'    # Submit parallel requests
+```
+
+List all commands in this group: `asana batch-api --help`
+
+### `custom-field-settings`
+
+```bash
+asana custom-field-settings get-portfolio-custom-field-settings --portfolio-gid <string>    # Get a portfolio's custom fields
+```
+
+```bash
+asana custom-field-settings get-project-custom-field-settings --project-gid <string>    # Get a project's custom fields
+```
+
+List all commands in this group: `asana custom-field-settings --help`
+
+### `custom-fields`
+
+```bash
+asana custom-fields add-enum-option --custom-field-gid <string>    # Create an enum option
+```
+
+```bash
+asana custom-fields create-new-field-record --body '{...}'    # Create a custom field
+```
+
+List all commands in this group: `asana custom-fields --help`
+
+### `events`
+
+```bash
+asana events get-resource-events --resource <string>    # Get events on a resource
+```
+
+List all commands in this group: `asana events --help`
+
+### `goal-relationships`
+
+```bash
+asana goal-relationships create-supporting-relationship --goal-gid <string> --body '{...}'    # Add a supporting goal relationship
+```
+
+```bash
+asana goal-relationships get-compact-records --supported-goal <string>    # Get goal relationships
+```
+
+List all commands in this group: `asana goal-relationships --help`
+
+### `goals`
+
+```bash
+asana goals add-collaborators-to-goal --goal-gid <string> --body '{...}'    # Add a collaborator to a goal
+```
+
+```bash
+asana goals create-metric --goal-gid <string> --body '{...}'    # Create a goal metric
+```
+
+List all commands in this group: `asana goals --help`
+
+### `jobs`
+
+```bash
+asana jobs get-by-id --job-gid <string>    # Get a job by id
+```
+
+List all commands in this group: `asana jobs --help`
+
+### `memberships`
+
+```bash
+asana memberships create-new-record    # Create a membership
+```
+
+```bash
+asana memberships delete-record --membership-gid <string>    # Delete a membership
+```
+
+List all commands in this group: `asana memberships --help`
+
+### `organization-exports`
+
+```bash
+asana organization-exports create-export-request --body '{...}'    # Create an organization export request
+```
+
+```bash
+asana organization-exports get-export-details --organization-export-gid <string>    # Get details on an org export request
+```
+
+List all commands in this group: `asana organization-exports --help`
+
+### `portfolio-memberships`
+
+```bash
+asana portfolio-memberships get-compact --portfolio-gid <string>    # Get memberships from a portfolio
+```
+
+```bash
+asana portfolio-memberships get-complete-record --portfolio-membership-gid <string>    # Get a portfolio membership
+```
+
+List all commands in this group: `asana portfolio-memberships --help`
+
+### `portfolios`
+
+```bash
+asana portfolios add-custom-field-setting --portfolio-gid <string> --body '{...}'    # Add a custom field to a portfolio
+```
+
+```bash
+asana portfolios add-members-to-portfolio --portfolio-gid <string> --body '{...}'    # Add users to a portfolio
+```
+
+List all commands in this group: `asana portfolios --help`
+
+### `project-briefs`
+
+```bash
+asana project-briefs create-new-record --project-gid <string> --body '{...}'    # Create a project brief
+```
+
+```bash
+asana project-briefs get-full-record --project-brief-gid <string>    # Get a project brief
+```
+
+List all commands in this group: `asana project-briefs --help`
+
+### `project-memberships`
+
+```bash
+asana project-memberships get-compact-records --project-gid <string>    # Get memberships from a project
+```
+
+```bash
+asana project-memberships get-record --project-membership-gid <string>    # Get a project membership
+```
+
+List all commands in this group: `asana project-memberships --help`
+
+### `project-statuses`
+
+```bash
+asana project-statuses create-new-status-update-record --project-gid <string> --body '{...}'    # Create a project status
+```
+
+```bash
+asana project-statuses delete-specific-status-update --project-status-gid <string>    # Delete a project status
+```
+
+List all commands in this group: `asana project-statuses --help`
+
+### `project-templates`
+
+```bash
+asana project-templates delete-template-record --project-template-gid <string>    # Delete a project template
+```
+
+```bash
+asana project-templates get-all-template-records --team-gid <string>    # Get a team's project templates
+```
+
+List all commands in this group: `asana project-templates --help`
+
+### `projects`
+
+```bash
+asana projects add-custom-field-setting --project-gid <string> --body '{...}'    # Add a custom field to a project
+```
+
+```bash
+asana projects add-followers-to-project --project-gid <string> --body '{...}'    # Add followers to a project
+```
+
+List all commands in this group: `asana projects --help`
+
+### `rules`
+
+```bash
+asana rules trigger-rule-request --rule-trigger-gid <string> --body '{...}'    # Trigger a rule
+```
+
+List all commands in this group: `asana rules --help`
+
+### `sections`
+
+```bash
+asana sections add-task-to-section --section-gid <string>    # Add task to section
+```
+
+```bash
+asana sections create-new-section --project-gid <string>    # Create a section in a project
+```
+
+List all commands in this group: `asana sections --help`
+
+### `status-updates`
+
+```bash
+asana status-updates create-new-status-update-record --body '{...}'    # Create a status update
+```
+
+```bash
+asana status-updates delete-specific-status-update --status-update-gid <string>    # Delete a status update
+```
+
+List all commands in this group: `asana status-updates --help`
+
+### `stories`
+
+```bash
+asana stories create-comment --task-gid <string> --body '{...}'    # Create a story on a task
+```
+
+```bash
+asana stories delete-story-record --story-gid <string>    # Delete a story
+```
+
+List all commands in this group: `asana stories --help`
+
+### `tags`
+
+```bash
+asana tags create-new-tag-record --body '{...}'    # Create a tag
+```
+
+```bash
+asana tags create-tag-in-workspace --workspace-gid <string> --body '{...}'    # Create a tag in a workspace
+```
+
+List all commands in this group: `asana tags --help`
+
+### `task-templates`
+
+```bash
+asana task-templates delete-task-template --task-template-gid <string>    # Delete a task template
+```
+
+```bash
+asana task-templates get-single-template --task-template-gid <string>    # Get a task template
+```
+
+List all commands in this group: `asana task-templates --help`
+
+### `tasks`
+
+```bash
+asana tasks add-followers-to-task --task-gid <string> --body '{...}'    # Add followers to a task
+```
+
+```bash
+asana tasks add-project-to-task --task-gid <string> --body '{...}'    # Add a project to a task
+```
+
+List all commands in this group: `asana tasks --help`
+
+### `team-memberships`
+
+```bash
+asana team-memberships get-compact --team-gid <string>    # Get memberships from a team
+```
+
+```bash
+asana team-memberships get-compact-records    # Get team memberships
+```
+
+List all commands in this group: `asana team-memberships --help`
+
+### `teams`
+
+```bash
+asana teams add-user-to-team --team-gid <string> --body '{...}'    # Add a user to a team
+```
+
+```bash
+asana teams create-team-record --body '{...}'    # Create a team
+```
+
+List all commands in this group: `asana teams --help`
+
+### `time-periods`
+
+```bash
+asana time-periods get-compact-time-periods --workspace <string>    # Get time periods
+```
+
+```bash
+asana time-periods get-full-record --time-period-gid <string>    # Get a time period
+```
+
+List all commands in this group: `asana time-periods --help`
+
+### `time-tracking-entries`
+
+```bash
+asana time-tracking-entries create-new-time-entry-record --task-gid <string> --body '{...}'    # Create a time tracking entry
+```
+
+```bash
+asana time-tracking-entries delete-time-entry --time-tracking-entry-gid <string>    # Delete a time tracking entry
+```
+
+List all commands in this group: `asana time-tracking-entries --help`
+
+### `typeahead`
+
+```bash
+asana typeahead get-results --workspace-gid <string> --resource-type <string>    # Get objects via typeahead
+```
+
+List all commands in this group: `asana typeahead --help`
+
+### `user-task-lists`
+
+```bash
+asana user-task-lists get-record --user-task-list-gid <string>    # Get a user task list
+```
+
+```bash
+asana user-task-lists get-user-task-list --user-gid <string> --workspace <string>    # Get a user's task list
+```
+
+List all commands in this group: `asana user-task-lists --help`
+
+### `users`
+
+```bash
+asana users get-favorites-for-user --user-gid <string> --resource-type <string> --workspace <string>    # Get a user's favorites
+```
+
+```bash
+asana users get-user-record --user-gid <string>    # Get a user
+```
+
+List all commands in this group: `asana users --help`
+
+### `webhooks`
+
+```bash
+asana webhooks establish-webhook --body '{...}'    # Establish a webhook
+```
+
+```bash
+asana webhooks get-webhook-record --webhook-gid <string>    # Get a webhook
+```
+
+List all commands in this group: `asana webhooks --help`
+
+### `workspace-memberships`
+
+```bash
+asana workspace-memberships get-record-by-id --workspace-membership-gid <string>    # Get a workspace membership
+```
+
+```bash
+asana workspace-memberships get-user-memberships --user-gid <string>    # Get workspace memberships for a user
+```
+
+List all commands in this group: `asana workspace-memberships --help`
+
+### `workspaces`
+
+```bash
+asana workspaces add-user-to-workspace --workspace-gid <string> --body '{...}'    # Add a user to a workspace or organization
+```
+
+```bash
+asana workspaces get-workspace-record --workspace-gid <string>    # Get a workspace
+```
+
+List all commands in this group: `asana workspaces --help`
+
+
+## Output and parsing
+
+All output is JSON by default and goes to stdout. Errors go to stderr as a single-line JSON object — stdout stays clean for piping.
+
+```bash
+asana <cmd> --jq <path>          # extract fields without jq installed (GJSON syntax)
+asana <cmd> -o yaml              # change format: json (default), yaml, table, compact, raw, pretty
+asana <cmd> --dry-run            # print the HTTP request without sending it
+asana <cmd> --schema             # JSON schema of inputs and outputs for that command
+```
+
+GJSON path examples:
+- `--jq id` — scalar
+- `--jq items.#.id` — every id from an array
+- `--jq "items.#(active==true)#"` — filter array by condition
+
+## Exit codes
+
+Branch on `$?` rather than parsing stderr:
+
+| Code | Meaning |
+|------|---------|
+| 0 | success |
+| 1 | unknown error |
+| 2 | auth failed (401 / 403) |
+| 3 | not found (404) |
+| 4 | validation error (400 / 422) |
+| 5 | rate limited (429) |
+| 6 | server error (5xx) |
+| 7 | network error |
+
+Error JSON shape on stderr:
+```json
+{"error":true,"code":"not_found","status":404,"message":"...","exit_code":3}
+```
+
+## Common workflows
+
+### List then fetch one
+```bash
+ID=$(asana <group> list --jq "items.0.id")
+asana <group> get --id "$ID"
+```
+
+### Capture a created ID
+```bash
+ID=$(asana <group> create [flags] --jq id)
+```
+
+### Safe destructive call
+```bash
+asana <group> delete --id X --dry-run    # inspect first
+asana <group> delete --id X              # exit 0 = deleted, 3 = not found
+```
+
+### Branch on exit code
+```bash
+asana <cmd> [flags]
+case $? in
+  0) : success ;;
+  2) echo "fix credentials" ;;
+  3) echo "not found, skip" ;;
+  5) sleep 10 ; retry ;;
+esac
+```
+
+## Discovering more
+
+```bash
+asana --help                              # top-level groups
+asana <group> --help                      # commands in a group
+asana <group> <cmd> --help                # flags + description
+asana <group> <cmd> --schema              # JSON schema
+asana agent-instructions                  # this file, embedded in the binary
+```
+

@@ -1,0 +1,285 @@
+cli:
+  name: asana
+  env_prefix: ASANA
+  version: "0.1.0"
+
+environments:
+  production: https://app.asana.com/api/1.0
+
+security_schemes:
+  personalAccessToken:
+
+security:
+  - personalAccessToken: []
+  - oauth2: []
+
+client_settings:
+  opts:
+    api_key:
+      type: string
+      read_env: ASANA_BEARER_TOKEN
+      auth:
+        security_scheme: personalAccessToken
+
+resources:
+  tasks:
+    methods:
+      get-multiple: "get /tasks"
+      create-new-task: "post /tasks"
+      get-task-record: "get /tasks/{task_gid}"
+      update-task-record: "put /tasks/{task_gid}"
+      delete-task: "delete /tasks/{task_gid}"
+      duplicate-task-job: "post /tasks/{task_gid}/duplicate"
+      get-tasks-by-project: "get /projects/{project_gid}/tasks"
+      get-section-tasks: "get /sections/{section_gid}/tasks"
+      get-multiple-with-tag: "get /tags/{tag_gid}/tasks"
+      get-user-task-list-tasks: "get /user_task_lists/{user_task_list_gid}/tasks"
+      get-subtask-list: "get /tasks/{task_gid}/subtasks"
+      create-subtask-record: "post /tasks/{task_gid}/subtasks"
+      set-parent-task: "post /tasks/{task_gid}/setParent"
+      get-all-dependencies: "get /tasks/{task_gid}/dependencies"
+      set-dependencies-for-task: "post /tasks/{task_gid}/addDependencies"
+      unlink-dependencies-from-task: "post /tasks/{task_gid}/removeDependencies"
+      get-dependents: "get /tasks/{task_gid}/dependents"
+      set-task-dependents: "post /tasks/{task_gid}/addDependents"
+      unlink-dependents: "post /tasks/{task_gid}/removeDependents"
+      add-project-to-task: "post /tasks/{task_gid}/addProject"
+      remove-project-from-task: "post /tasks/{task_gid}/removeProject"
+      add-tag-to-task: "post /tasks/{task_gid}/addTag"
+      remove-tag-from-task: "post /tasks/{task_gid}/removeTag"
+      add-followers-to-task: "post /tasks/{task_gid}/addFollowers"
+      remove-followers-from-task: "post /tasks/{task_gid}/removeFollowers"
+      get-by-custom-id: "get /workspaces/{workspace_gid}/tasks/custom_id/{custom_id}"
+      search-in-workspace: "get /workspaces/{workspace_gid}/tasks/search"
+  projects:
+    methods:
+      list-multiple: "get /projects"
+      create-new-project-record: "post /projects"
+      get-project-record: "get /projects/{project_gid}"
+      update-project-record: "put /projects/{project_gid}"
+      delete-project-by-id: "delete /projects/{project_gid}"
+      duplicate-project-job: "post /projects/{project_gid}/duplicate"
+      task-projects-list: "get /tasks/{task_gid}/projects"
+      get-team-projects: "get /teams/{team_gid}/projects"
+      create-project-for-team: "post /teams/{team_gid}/projects"
+      get-all-in-workspace: "get /workspaces/{workspace_gid}/projects"
+      create-in-workspace: "post /workspaces/{workspace_gid}/projects"
+      add-custom-field-setting: "post /projects/{project_gid}/addCustomFieldSetting"
+      remove-custom-field: "post /projects/{project_gid}/removeCustomFieldSetting"
+      get-task-counts: "get /projects/{project_gid}/task_counts"
+      add-members-to-project: "post /projects/{project_gid}/addMembers"
+      remove-members-from-project: "post /projects/{project_gid}/removeMembers"
+      add-followers-to-project: "post /projects/{project_gid}/addFollowers"
+      remove-project-followers: "post /projects/{project_gid}/removeFollowers"
+      create-project-template-job: "post /projects/{project_gid}/saveAsTemplate"
+  portfolios:
+    methods:
+      list-multiple-portfolios: "get /portfolios"
+      create-new-portfolio-record: "post /portfolios"
+      get-record: "get /portfolios/{portfolio_gid}"
+      update-portfolio-record: "put /portfolios/{portfolio_gid}"
+      delete-record: "delete /portfolios/{portfolio_gid}"
+      get-items: "get /portfolios/{portfolio_gid}/items"
+      add-portfolio-item: "post /portfolios/{portfolio_gid}/addItem"
+      remove-item-from-portfolio: "post /portfolios/{portfolio_gid}/removeItem"
+      add-custom-field-setting: "post /portfolios/{portfolio_gid}/addCustomFieldSetting"
+      remove-custom-field-setting: "post /portfolios/{portfolio_gid}/removeCustomFieldSetting"
+      add-members-to-portfolio: "post /portfolios/{portfolio_gid}/addMembers"
+      remove-members-from-portfolio: "post /portfolios/{portfolio_gid}/removeMembers"
+  goals:
+    methods:
+      get-goal-record: "get /goals/{goal_gid}"
+      update-goal-record: "put /goals/{goal_gid}"
+      delete-record: "delete /goals/{goal_gid}"
+      get-compact-records: "get /goals"
+      create-new-goal-record: "post /goals"
+      create-metric: "post /goals/{goal_gid}/setMetric"
+      update-metric-current-value: "post /goals/{goal_gid}/setMetricCurrentValue"
+      add-collaborators-to-goal: "post /goals/{goal_gid}/addFollowers"
+      remove-followers-from-goal: "post /goals/{goal_gid}/removeFollowers"
+      get-parent-goals: "get /goals/{goal_gid}/parentGoals"
+  custom-fields:
+    methods:
+      create-new-field-record: "post /custom_fields"
+      get-metadata: "get /custom_fields/{custom_field_gid}"
+      update-field-record: "put /custom_fields/{custom_field_gid}"
+      delete-field-record: "delete /custom_fields/{custom_field_gid}"
+      list-workspace-custom-fields: "get /workspaces/{workspace_gid}/custom_fields"
+      add-enum-option: "post /custom_fields/{custom_field_gid}/enum_options"
+      reorder-enum-option: "post /custom_fields/{custom_field_gid}/enum_options/insert"
+      update-enum-option: "put /enum_options/{enum_option_gid}"
+  tags:
+    methods:
+      list-filtered-tags: "get /tags"
+      create-new-tag-record: "post /tags"
+      get-record: "get /tags/{tag_gid}"
+      update-tag-record: "put /tags/{tag_gid}"
+      remove-tag: "delete /tags/{tag_gid}"
+      get-task-tags: "get /tasks/{task_gid}/tags"
+      get-filtered-tags: "get /workspaces/{workspace_gid}/tags"
+      create-tag-in-workspace: "post /workspaces/{workspace_gid}/tags"
+  sections:
+    methods:
+      get-record: "get /sections/{section_gid}"
+      update-section-record: "put /sections/{section_gid}"
+      delete-section: "delete /sections/{section_gid}"
+      list-project-sections: "get /projects/{project_gid}/sections"
+      create-new-section: "post /projects/{project_gid}/sections"
+      add-task-to-section: "post /sections/{section_gid}/addTask"
+      move-or-insert: "post /projects/{project_gid}/sections/insert"
+  teams:
+    methods:
+      create-team-record: "post /teams"
+      get-team-record: "get /teams/{team_gid}"
+      update-team-record: "put /teams/{team_gid}"
+      list-workspace-teams: "get /workspaces/{workspace_gid}/teams"
+      get-user-teams: "get /users/{user_gid}/teams"
+      add-user-to-team: "post /teams/{team_gid}/addUser"
+      remove-user-from-team: "post /teams/{team_gid}/removeUser"
+  allocations:
+    methods:
+      get-record-by-id: "get /allocations/{allocation_gid}"
+      update-record-by-id: "put /allocations/{allocation_gid}"
+      delete-allocation-by-id: "delete /allocations/{allocation_gid}"
+      get-multiple: "get /allocations"
+      create-record: "post /allocations"
+  goal-relationships:
+    methods:
+      get-record-by-id: "get /goal_relationships/{goal_relationship_gid}"
+      update-goal-relationship-record: "put /goal_relationships/{goal_relationship_gid}"
+      get-compact-records: "get /goal_relationships"
+      create-supporting-relationship: "post /goals/{goal_gid}/addSupportingRelationship"
+      remove-supporting-relationship: "post /goals/{goal_gid}/removeSupportingRelationship"
+  project-templates:
+    methods:
+      get-record: "get /project_templates/{project_template_gid}"
+      delete-template-record: "delete /project_templates/{project_template_gid}"
+      list-multiple: "get /project_templates"
+      get-all-template-records: "get /teams/{team_gid}/project_templates"
+      instantiate-project-job: "post /project_templates/{project_template_gid}/instantiateProject"
+  stories:
+    methods:
+      get-full-record: "get /stories/{story_gid}"
+      update-full-record: "put /stories/{story_gid}"
+      delete-story-record: "delete /stories/{story_gid}"
+      get-task-stories: "get /tasks/{task_gid}/stories"
+      create-comment: "post /tasks/{task_gid}/stories"
+  users:
+    methods:
+      list-multiple-users: "get /users"
+      get-user-record: "get /users/{user_gid}"
+      get-favorites-for-user: "get /users/{user_gid}/favorites"
+      list-team-users: "get /teams/{team_gid}/users"
+      list-workspace-users: "get /workspaces/{workspace_gid}/users"
+  webhooks:
+    methods:
+      list-multiple-webhooks: "get /webhooks"
+      establish-webhook: "post /webhooks"
+      get-webhook-record: "get /webhooks/{webhook_gid}"
+      update-webhook-filters: "put /webhooks/{webhook_gid}"
+      remove-webhook: "delete /webhooks/{webhook_gid}"
+  workspaces:
+    methods:
+      list-multiple: "get /workspaces"
+      get-workspace-record: "get /workspaces/{workspace_gid}"
+      update-workspace-record: "put /workspaces/{workspace_gid}"
+      add-user-to-workspace: "post /workspaces/{workspace_gid}/addUser"
+      remove-user-from-workspace: "post /workspaces/{workspace_gid}/removeUser"
+  memberships:
+    methods:
+      get-multiple: "get /memberships"
+      create-new-record: "post /memberships"
+      get-membership-record: "get /memberships/{membership_gid}"
+      update-membership-record: "put /memberships/{membership_gid}"
+      delete-record: "delete /memberships/{membership_gid}"
+  time-tracking-entries:
+    methods:
+      get-for-task: "get /tasks/{task_gid}/time_tracking_entries"
+      create-new-time-entry-record: "post /tasks/{task_gid}/time_tracking_entries"
+      get-record: "get /time_tracking_entries/{time_tracking_entry_gid}"
+      update-time-tracking-entry: "put /time_tracking_entries/{time_tracking_entry_gid}"
+      delete-time-entry: "delete /time_tracking_entries/{time_tracking_entry_gid}"
+  attachments:
+    methods:
+      get-attachment-record: "get /attachments/{attachment_gid}"
+      delete-specific: "delete /attachments/{attachment_gid}"
+      get-all-for-object: "get /attachments"
+      upload-attachment: "post /attachments"
+  project-briefs:
+    methods:
+      get-full-record: "get /project_briefs/{project_brief_gid}"
+      update-brief-record: "put /project_briefs/{project_brief_gid}"
+      remove-brief: "delete /project_briefs/{project_brief_gid}"
+      create-new-record: "post /projects/{project_gid}/project_briefs"
+  project-statuses:
+    methods:
+      get-status-update-record: "get /project_statuses/{project_status_gid}"
+      delete-specific-status-update: "delete /project_statuses/{project_status_gid}"
+      get-project-updates: "get /projects/{project_gid}/project_statuses"
+      create-new-status-update-record: "post /projects/{project_gid}/project_statuses"
+  status-updates:
+    methods:
+      get-record-by-id: "get /status_updates/{status_update_gid}"
+      delete-specific-status-update: "delete /status_updates/{status_update_gid}"
+      get-compact-records: "get /status_updates"
+      create-new-status-update-record: "post /status_updates"
+  task-templates:
+    methods:
+      list-multiple: "get /task_templates"
+      get-single-template: "get /task_templates/{task_template_gid}"
+      delete-task-template: "delete /task_templates/{task_template_gid}"
+      instantiate-task-job: "post /task_templates/{task_template_gid}/instantiateTask"
+  team-memberships:
+    methods:
+      get-record-by-id: "get /team_memberships/{team_membership_gid}"
+      get-compact-records: "get /team_memberships"
+      get-compact: "get /teams/{team_gid}/team_memberships"
+      get-user-compact: "get /users/{user_gid}/team_memberships"
+  portfolio-memberships:
+    methods:
+      list-multiple-memberships: "get /portfolio_memberships"
+      get-complete-record: "get /portfolio_memberships/{portfolio_membership_gid}"
+      get-compact: "get /portfolios/{portfolio_gid}/portfolio_memberships"
+  workspace-memberships:
+    methods:
+      get-record-by-id: "get /workspace_memberships/{workspace_membership_gid}"
+      get-user-memberships: "get /users/{user_gid}/workspace_memberships"
+      list-for-workspace: "get /workspaces/{workspace_gid}/workspace_memberships"
+  custom-field-settings:
+    methods:
+      get-project-custom-field-settings: "get /projects/{project_gid}/custom_field_settings"
+      get-portfolio-custom-field-settings: "get /portfolios/{portfolio_gid}/custom_field_settings"
+  organization-exports:
+    methods:
+      create-export-request: "post /organization_exports"
+      get-export-details: "get /organization_exports/{organization_export_gid}"
+  project-memberships:
+    methods:
+      get-record: "get /project_memberships/{project_membership_gid}"
+      get-compact-records: "get /projects/{project_gid}/project_memberships"
+  time-periods:
+    methods:
+      get-full-record: "get /time_periods/{time_period_gid}"
+      get-compact-time-periods: "get /time_periods"
+  user-task-lists:
+    methods:
+      get-record: "get /user_task_lists/{user_task_list_gid}"
+      get-user-task-list: "get /users/{user_gid}/user_task_list"
+  audit-log-api:
+    methods:
+      get-audit-log-events: "get /workspaces/{workspace_gid}/audit_log_events"
+  batch-api:
+    methods:
+      submit-parallel-requests: "post /batch"
+  events:
+    methods:
+      get-resource-events: "get /events"
+  jobs:
+    methods:
+      get-by-id: "get /jobs/{job_gid}"
+  typeahead:
+    methods:
+      get-results: "get /workspaces/{workspace_gid}/typeahead"
+  rules:
+    methods:
+      trigger-rule-request: "post /rule_triggers/{rule_trigger_gid}/run"
